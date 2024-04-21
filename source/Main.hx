@@ -39,11 +39,11 @@ import lime.graphics.Image;
 class Main extends Sprite
 {
 	var game = {
-		width: 1280,
+		width: 100,
 		height: 720,
 		initialState: () -> new TitleState(),
 		zoom: -1.0,
-		framerate: 60,
+		framerate: 64,
 		skipSplash: true,
 		startFullscreen: false
 	};
@@ -95,7 +95,7 @@ class Main extends Sprite
 	{
 		Application.current.window.title = "Friday Night Funkin': SB Engine v" + MainMenuState.sbEngineVersion;
 		#if android
-		toastText = "Welcome to: FNF': SB Engine v" + MainMenuState.sbEngineVersion;
+		toastText = "Bad Luck Qt mod" + MainMenuState.sbEngineVersion;
 		if(!checkingToastMessage) {		
 		    checkingToastMessage = true;
 		    AndroidDialogsExtend.OpenToast(toastText, 1);
