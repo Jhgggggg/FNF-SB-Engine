@@ -125,8 +125,7 @@ class Main extends Sprite
 		Controls.instance = new Controls();
 		ClientPrefs.loadDefaultKeys();
 	
-		#if android addChild(new FlxGame(1280, 720, #if MODS_ALLOWED CopyFilesState.checkExistingFiles() ? game.initialState : CopyFilesState #else TitleState #end, 60, 60, true, false)); #else addChild(new FlxGame(game.width, game.height, game.initialState, game.framerate, game.framerate, game.skipSplash, game.startFullscreen)); #end
-
+		 
 		gameLogs = new GameLog();
 		GameLog.startInit();
 		addChild(gameLogs);
@@ -152,10 +151,7 @@ class Main extends Sprite
 		Lib.current.stage.window.setIcon(icon);
 		#end
 		
-		#if CRASH_HANDLER Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash); #end
-		#if desktop FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, toggleFullScreen); #end
-		#if DISCORD_ALLOWED DiscordClient.prepare(); #end
-		#if android System.allowScreenTimeout = ClientPrefs.data.screenSaver; #end
+		
 
 		// shader coords fix
 		FlxG.signals.gameResized.add(function (w, h) {
@@ -224,12 +220,7 @@ class Main extends Sprite
 		Sys.println(errorMessage);
 		Sys.println("Crash dump saved in " + Path.normalize(path));
 
-		#if android
-		var toastText:String = '';
-		toastText = 'Uncaught Error happends!';
-		AndroidDialogsExtend.OpenToast(toastText, 1);
-		if (ClientPrefs.data.vibration) Hardware.vibrate(vibrationInt);
-		#end
+		
 
 		FlxG.sound.music.stop();
 		FlxG.sound.play(Paths.sound('error'));
